@@ -18,9 +18,9 @@ def test_parses_series_episode_and_proposed_name() -> None:
     assert result.episodes == (4,)
     assert result.extension == ".mkv"
     assert not result.review_required
-    assert series_episode_filename(result.title, result.season, result.episodes, result.extension) == (
-        "S02E04 - Jujutsu Kaisen.mkv"
-    )
+    assert series_episode_filename(
+        result.title, result.season, result.episodes, result.extension
+    ) == ("S02E04 - Jujutsu Kaisen.mkv")
 
 
 def test_parses_multiple_episodes() -> None:
@@ -29,9 +29,9 @@ def test_parses_multiple_episodes() -> None:
     assert result.title == "Show"
     assert result.season == 1
     assert result.episodes == (1, 2)
-    assert series_episode_filename(result.title, result.season, result.episodes, result.extension) == (
-        "S01E01-E02 - Show.mkv"
-    )
+    assert series_episode_filename(
+        result.title, result.season, result.episodes, result.extension
+    ) == ("S01E01-E02 - Show.mkv")
 
 
 def test_parses_specials_into_specials_directory() -> None:
@@ -41,9 +41,9 @@ def test_parses_specials_into_specials_directory() -> None:
     assert result.season == 0
     assert result.episodes == (1,)
     assert season_directory(result.season) == "Especiais"
-    assert series_episode_filename(result.title, result.season, result.episodes, result.extension) == (
-        "S00E01 - Show.mkv"
-    )
+    assert series_episode_filename(
+        result.title, result.season, result.episodes, result.extension
+    ) == ("S00E01 - Show.mkv")
 
 
 def test_parses_absolute_anime_when_title_is_a_strong_signal() -> None:

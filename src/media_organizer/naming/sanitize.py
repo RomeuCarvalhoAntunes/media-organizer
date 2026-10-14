@@ -5,7 +5,14 @@ import re
 _INVALID_CHARACTERS = re.compile(r'[\\/:*?"<>|]')
 _WHITESPACE = re.compile(r"\s+")
 _DUPLICATE_HYPHENS = re.compile(r"-{2,}")
-_RESERVED_NAMES = {"AUX", "CON", "NUL", "PRN", *(f"COM{i}" for i in range(1, 10)), *(f"LPT{i}" for i in range(1, 10))}
+_RESERVED_NAMES = {
+    "AUX",
+    "CON",
+    "NUL",
+    "PRN",
+    *(f"COM{i}" for i in range(1, 10)),
+    *(f"LPT{i}" for i in range(1, 10)),
+}
 
 
 def sanitize_component(value: str) -> str:

@@ -6,7 +6,9 @@ from pathlib import PurePath
 
 from media_organizer.parser.movie import _is_technical_tag, _is_year, _tokens
 
-_EPISODE_PATTERN = re.compile(r"(?i)(?:^|[._ -])S(?P<season>\d{1,2})E(?P<episodes>\d{1,3}(?:E\d{1,3})*)")
+_EPISODE_PATTERN = re.compile(
+    r"(?i)(?:^|[._ -])S(?P<season>\d{1,2})E(?P<episodes>\d{1,3}(?:E\d{1,3})*)"
+)
 _ABSOLUTE_ANIME_SIGNALS = (
     "bleach",
     "boruto",

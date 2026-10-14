@@ -24,11 +24,17 @@ def main() -> None:
         if result.review_required:
             proposed = "REVIEW_REQUIRED"
         elif result.absolute_episode is not None:
-            proposed = f"{series_directory(result.title)}/{absolute_episode_filename(result.title, result.absolute_episode, result.extension)}"
+            absolute_name = absolute_episode_filename(
+                result.title, result.absolute_episode, result.extension
+            )
+            proposed = f"{series_directory(result.title)}/{absolute_name}"
         else:
+            episode_name = series_episode_filename(
+                result.title, result.season or 0, result.episodes, result.extension
+            )
             proposed = (
                 f"{series_directory(result.title)}/{season_directory(result.season or 0)}/"
-                f"{series_episode_filename(result.title, result.season or 0, result.episodes, result.extension)}"
+                f"{episode_name}"
             )
         print(f"{filename} -> {result} -> {proposed}")
 

@@ -92,9 +92,13 @@ def _tokens(stem: str) -> list[str]:
     raw_tokens = [token for token in normalized.split() if token]
     tokens: list[str] = []
     for token in raw_tokens:
-        if tokens and token.isdigit() and (
-            tokens[-1].casefold() in {"h", "dd", "ddp", "dts", "opus", "aac", "ac3", "eac3"}
-            or re.fullmatch(r"(?:ddp|dts|opus|aac|ac3|eac3)\d+", tokens[-1].casefold())
+        if (
+            tokens
+            and token.isdigit()
+            and (
+                tokens[-1].casefold() in {"h", "dd", "ddp", "dts", "opus", "aac", "ac3", "eac3"}
+                or re.fullmatch(r"(?:ddp|dts|opus|aac|ac3|eac3)\d+", tokens[-1].casefold())
+            )
         ):
             tokens[-1] = f"{tokens[-1]}.{token}"
         else:
@@ -126,10 +130,14 @@ def parse_movie_filename(filename: str) -> MovieParseResult:
     title = " ".join(_clean_token(token) for token in tokens[:title_end]).strip()
     technical_start = year_index if year_index is not None else technical_index
     technical_tags = tuple(
-        token for index, token in enumerate(tokens) if technical_start is not None and index >= technical_start and not _is_year(token)
+        token
+        for index, token in enumerate(tokens)
+        if technical_start is not None and index >= technical_start and not _is_year(token)
     )
 
-    review_required = not title or ambiguous_year or (year_index is None and technical_index is None)
+    review_required = (
+        not title or ambiguous_year or (year_index is None and technical_index is None)
+    )
     return MovieParseResult(
         title=title,
         year=int(tokens[year_index]) if year_index is not None else None,
