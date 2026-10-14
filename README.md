@@ -106,3 +106,11 @@ execute:
 ```bash
 docker compose run --rm app python scripts/naming_demo.py
 ```
+
+Para demonstrar o parser de filmes com nomes próprios, execute:
+
+```bash
+docker compose run --rm app python scripts/movie_parser_demo.py \
+  "John.Wick.Chapter.4.2023.BluRay.1080p.DDP5.1.Atmos.x264-MTeam.DUAL-C76.mkv" \
+  "Mickey.17.2025.1080p.AMZN.WEB-DL.DDP5.1.H264.DUAL-C76.mkv"
+```
