@@ -99,3 +99,10 @@ py -m venv .venv
 
 Esses comandos executam apenas a infraestrutura mínima do projeto e não
 alteram nenhuma biblioteca de mídia.
+
+Para demonstrar as regras de naming sem acessar ou modificar o filesystem,
+execute:
+
+```bash
+docker compose run --rm app python scripts/naming_demo.py
+```
