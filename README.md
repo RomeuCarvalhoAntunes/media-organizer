@@ -69,3 +69,33 @@ Leia nesta ordem:
 6. `plans/IMPLEMENTATION_PLAN.md`
 7. `plans/BOOTSTRAP_PLAN.md`
 8. `AGENTS.md`
+
+## Desenvolvimento
+
+O ambiente de desenvolvimento usa Docker desde o início. A partir da raiz do
+repositório, execute:
+
+```bash
+docker compose build
+docker compose run --rm app pytest
+docker compose run --rm app ruff check src tests
+docker compose run --rm app mypy src tests
+```
+
+Cada container deve encerrar com código `0`. O pacote Python mínimo fica em
+`src/media_organizer` e ainda não implementa regras de organização de mídia.
+
+### Execução nativa no Windows
+
+Com Python 3.11 ou superior instalado, a partir da raiz do repositório:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --editable ".[dev]"
+.\.venv\Scripts\pytest.exe
+.\.venv\Scripts\ruff.exe check src tests
+.\.venv\Scripts\mypy.exe src tests
+```
+
+Esses comandos executam apenas a infraestrutura mínima do projeto e não
+alteram nenhuma biblioteca de mídia.
